@@ -1,0 +1,11 @@
+FROM amazon/aws-lambda-python:3.9
+
+WORKDIR /var/task
+
+COPY mission/* /var/task/
+
+RUN pip install opencv-python requests albumentations
+
+RUN yum install -y mesa-libGL
+
+CMD ["lambda_handler.lambda_handler"]
