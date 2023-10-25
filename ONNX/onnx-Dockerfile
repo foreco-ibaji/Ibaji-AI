@@ -1,0 +1,15 @@
+FROM amazon/aws-lambda-python:3.9
+
+WORKDIR /var/task
+
+COPY ONNX/* /var/task/
+
+#COPY upload/* /var/task/
+
+#RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+
+RUN pip install opencv-python onnxruntime requests
+
+RUN yum install -y mesa-libGL
+
+CMD ["lambda_handler.lambda_handler"]
