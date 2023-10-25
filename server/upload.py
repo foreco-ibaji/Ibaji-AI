@@ -14,7 +14,7 @@ def transforming(image):
   transformed_image = transformed["image"]
   return transformed_image
 
-def detecting_trash(model, image_url):
+def detecting_trash(model, image_url, mapper_cls):
   response = requests.get(image_url)
   image_bytes = response.content
   image = image_decode(image_bytes, channels=3)
@@ -32,4 +32,4 @@ def detecting_trash(model, image_url):
           [mapper_cls[int(cls)], int(float(x1)), int(float(y1)), int(float(x2)), int(float(y2))]
       )
 
-  return {'bboxes': bboxes}
+  return bboxes
