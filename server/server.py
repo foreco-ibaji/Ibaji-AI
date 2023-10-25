@@ -37,7 +37,7 @@ def read_root():
 async def upload(data: dict):
     image_url = data.get('image_url')
     if image_url:
-        bboxes = detecting_trash(model, image_url)
+        bboxes = detecting_trash(model, image_url, mapper_cls)
         return {'bboxes': bboxes}
     else:
         return {"error": "Invalid data"}
@@ -45,11 +45,10 @@ async def upload(data: dict):
 @app.post("/mission/randomCrop")
 async def mission_randomCrop(data: dict):
   image_url = data.get('image_url')
-  x, y, w, h = data.get('coordinate')
+  txt_url = data.get('txt_url')
   if image_url:
-    mission_image = get_random_crop_mission_image(image_url, x, y, w, h)
-    
-    return {'image': mission_image}
+    mission_images = get_random_crop_mission_image(image_url, txt_url)
+    return {'image': mission_images}
   else:
       return {"error": "Invalid data"}
     
