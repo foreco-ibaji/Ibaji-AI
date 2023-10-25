@@ -21,14 +21,12 @@ def transforming(image, x1, y1, x2, y2, r=2):
   transformed_image = transformed["image"]
   return transformed_image
 
-def get_random_crop_mission_image(image_url, txt_url, num_samples=4):
+def get_random_crop_mission_image(image_url, coordinate, num_samples=4):
   response_image_url = requests.get(image_url)
   image_bytes = response_image_url.content
   image = image_decode(image_bytes, channels=3)
 
-  response_txt_url = requests.get(txt_url)
-  txt = response_txt_url.content
-  _, x, y, w, h = map(float, txt.split())
+  x, y, w, h = map(float, coordinate.split())
 
   # 좌표를 이미지 크기에 맞게 변환
   height, width, _ = image.shape

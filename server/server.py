@@ -45,9 +45,9 @@ async def upload(data: dict):
 @app.post("/mission/randomCrop")
 async def mission_randomCrop(data: dict):
   image_url = data.get('image_url')
-  txt_url = data.get('txt_url')
+  coordinate = data.get('coordinate')
   if image_url:
-    mission_images = get_random_crop_mission_image(image_url, txt_url)
+    mission_images = get_random_crop_mission_image(image_url, coordinate)
     return {'image': mission_images}
   else:
       return {"error": "Invalid data"}
