@@ -1,14 +1,13 @@
 # Wiz AI
-- EC2를 이용하여 서비스를 배포하였고, 서버는 FastAPI를 이용하여 구축하였습니다. 
-- AI hub의 재활용 쓰레기 데이터를 이용하여 AI 모델을 학습하였습니다.
-- AI 모델은 ultralytics의 YOLOv8m 모델을 이용하였습니다.
-- 사용자가 이미지를 입력하여 백엔드 서버에서 전달해주면 재활용 쓰레기를 탐지하여 좌표와 결괏값을 돌려줍니다.
-- 현재 탐지할 수 있는 재활용 쓰레기의 종류는 15가지가 있습니다. (가구, 고철, 나무, 도기, 비닐, 스티로폼, 유리병, 의류, 자전거, 전자제품, 종이, 캔, 페트병, 플라스틱, 형광등)
+- ### When the user captures an image of recyclable waste using a camera and sends it, the YOLO model detects the recyclable waste from the photo and provides information about its type and location.
+- ### We have trained YOLOv8 utilizing the recycled garbage data from AI hub.
+- ### In order to enable rapid operation with small memory on the Lambda server, it was deployed in ONNX format.
+- ### At present, there are 15 types of recyclable waste that can be detected.
+  - ### These include furniture, scrap metal, wood, ceramics, vinyl, styrofoam, glass bottles, clothing, bicycles, electronics, paper, cans, PET bottles, plastic, and fluorescent lights.
+- ### We developed an API using AWS Lambda, and resolved the cold start issue by setting the Amazon EventBridge Scheduler to invoke the lambda function every five minutes.
 
-## AI Server 구성도
-![image](https://github.com/foreco-ibaji/Wiz-AI/assets/79131091/713870f0-b17b-41b7-b57a-6aef51352565)
+## AI Server pipeline
+<img src="./resources/wiz_ai_pipeline.png" width="100%">
 
-## 향후 계획
-- Wiz에 새롭게 추가될 미션 개발 예정
-- AI 모델 업데이트 자동화 프로세스 구축(CI/CD)
-- 데이터 추가하여 모델 고도화
+## plans
+- Construction of an automated process for AI model updates (CI/CD).
